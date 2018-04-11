@@ -73,12 +73,12 @@ export class DropdownOpenDirective implements OnDestroy {
         }
     }
 
-    @HostListener('keydown', ['$event'])
-    dropdownKeydown(event: KeyboardEvent) {
-        if (event.keyCode === 40) { // down
-            this.openDropdown();
-        }
-    }
+    // @HostListener('keydown', ['$event'])
+    // dropdownKeydown(event: KeyboardEvent) {
+    //     if (event.keyCode === 40) { // down
+    //         this.openDropdown();
+    //     }
+    // }
 
     @HostListener('focus')
     onFocus() {
