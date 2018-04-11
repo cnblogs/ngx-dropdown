@@ -1,0 +1,8 @@
+.dropdown {
+    display: none;
+    border: 1px solid;
+}
+
+.open .dropdown {
+    display: block;
+}
