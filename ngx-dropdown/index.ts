@@ -1,26 +1,26 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {DropdownNotClosableZone} from "./DropdownNotClosableZone";
-import {Dropdown} from "./Dropdown";
-import {DropdownOpen} from "./DropdownOpen";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DropdownNotClosableZoneDirective } from './DropdownNotClosableZone';
+import { DropdownDirective } from './Dropdown';
+import { DropdownOpenDirective } from './DropdownOpen';
 
-export * from "./DropdownNotClosableZone";
-export * from "./Dropdown";
-export * from "./DropdownOpen";
+export * from './DropdownNotClosableZone';
+export * from './Dropdown';
+export * from './DropdownOpen';
 
 @NgModule({
     imports: [
         CommonModule
     ],
     declarations: [
-        DropdownNotClosableZone,
-        Dropdown,
-        DropdownOpen,
+        DropdownNotClosableZoneDirective,
+        DropdownDirective,
+        DropdownOpenDirective,
     ],
     exports: [
-        DropdownNotClosableZone,
-        Dropdown,
-        DropdownOpen,
+        DropdownNotClosableZoneDirective,
+        DropdownDirective,
+        DropdownOpenDirective,
     ]
 })
 export class DropdownModule {

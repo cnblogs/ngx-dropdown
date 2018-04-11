@@ -1,20 +1,19 @@
-import {Directive, ElementRef, ContentChild, Output, EventEmitter, Input} from "@angular/core";
-import {DropdownNotClosableZone} from "./DropdownNotClosableZone";
+import { Directive, ElementRef, ContentChild, Output, EventEmitter, Input } from '@angular/core';
+import { DropdownNotClosableZoneDirective } from './DropdownNotClosableZone';
 
 @Directive({
-    selector: "[dropdown]",
-    exportAs: "dropdown"
+    selector: '[appDropdown]'
 })
-export class Dropdown {
+export class DropdownDirective {
 
     // -------------------------------------------------------------------------
     // Inputs / Outputs
     // -------------------------------------------------------------------------
 
-    @Input("dropdownToggle")
+    @Input('dropdownToggle')
     toggleClick = true;
 
-    @Input("dropdownFocusActivate")
+    @Input('dropdownFocusActivate')
     activateOnFocus = false;
 
     @Output()
@@ -27,8 +26,8 @@ export class Dropdown {
     // Properties
     // -------------------------------------------------------------------------
 
-    @ContentChild(DropdownNotClosableZone)
-    notClosableZone: DropdownNotClosableZone;
+    @ContentChild(DropdownNotClosableZoneDirective)
+    notClosableZone: DropdownNotClosableZoneDirective;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -43,24 +42,25 @@ export class Dropdown {
 
     open() {
         const element: HTMLElement = this.elementRef.nativeElement;
-        element.classList.add("open");
+        element.classList.add('open');
         this.onOpen.emit(undefined);
     }
 
     close() {
         const element: HTMLElement = this.elementRef.nativeElement;
-        element.classList.remove("open");
+        element.classList.remove('open');
         this.onClose.emit(undefined);
     }
 
     isOpened() {
         const element: HTMLElement = this.elementRef.nativeElement;
-        return element.classList.contains("open");
+        return element.classList.contains('open');
     }
 
     isInClosableZone(element: HTMLElement) {
-        if (!this.notClosableZone)
+        if (!this.notClosableZone) {
             return false;
+        }
 
         return this.notClosableZone.contains(element);
     }

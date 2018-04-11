@@ -1,11 +1,10 @@
-import {Directive, ElementRef, OnDestroy, Host, HostListener} from "@angular/core";
-import {Dropdown} from "./Dropdown";
+import { Directive, ElementRef, OnDestroy, Host, HostListener } from '@angular/core';
+import { DropdownDirective } from './Dropdown';
 
 @Directive({
-    selector: "[dropdown-open]",
-    exportAs: "dropdownOpen"
+    selector: '[appDropdownOpen]'
 })
-export class DropdownOpen implements OnDestroy {
+export class DropdownOpenDirective implements OnDestroy {
 
     // -------------------------------------------------------------------------
     // Private Properties
@@ -14,7 +13,7 @@ export class DropdownOpen implements OnDestroy {
     /**
      * This hack is needed for dropdown not to open and instantly closed
      */
-    private openedByFocus: boolean = false;
+    private openedByFocus = false;
 
     private closeDropdownOnOutsideClick: (event: Event) => void;
 
@@ -22,8 +21,8 @@ export class DropdownOpen implements OnDestroy {
     // Constructor
     // -------------------------------------------------------------------------
 
-    constructor(@Host() public dropdown: Dropdown,
-                private elementRef: ElementRef) {
+    constructor(@Host() public dropdown: DropdownDirective,
+        private elementRef: ElementRef) {
         const _this = this;
         this.closeDropdownOnOutsideClick = function closeDropdownOnOutsideClick(event: MouseEvent) {
             _this.closeIfInClosableZone(event);
@@ -43,22 +42,24 @@ export class DropdownOpen implements OnDestroy {
     }
 
     open() {
-        if (this.dropdown.isOpened())
+        if (this.dropdown.isOpened()) {
             return;
+        }
 
         this.dropdown.open();
-        document.addEventListener("click", this.closeDropdownOnOutsideClick, true);
+        document.addEventListener('click', this.closeDropdownOnOutsideClick, true);
     }
 
     close() {
-        if (!this.dropdown.isOpened())
+        if (!this.dropdown.isOpened()) {
             return;
+        }
 
         this.dropdown.close();
-        document.removeEventListener("click", this.closeDropdownOnOutsideClick, true);
+        document.removeEventListener('click', this.closeDropdownOnOutsideClick, true);
     }
 
-    @HostListener("click")
+    @HostListener('click')
     openDropdown() {
         if (this.dropdown.activateOnFocus && this.openedByFocus) {
             this.openedByFocus = false;
@@ -72,30 +73,34 @@ export class DropdownOpen implements OnDestroy {
         }
     }
 
-    @HostListener("keydown", ["$event"])
+    @HostListener('keydown', ['$event'])
     dropdownKeydown(event: KeyboardEvent) {
         if (event.keyCode === 40) { // down
             this.openDropdown();
         }
     }
 
-    @HostListener("focus")
+    @HostListener('focus')
     onFocus() {
-        if (!this.dropdown.activateOnFocus) return;
+        if (!this.dropdown.activateOnFocus) {
+            return;
+        }
         this.openedByFocus = true;
         this.dropdown.open();
-        document.addEventListener("click", this.closeDropdownOnOutsideClick, true);
+        document.addEventListener('click', this.closeDropdownOnOutsideClick, true);
     }
 
-    @HostListener("blur", ["$event"])
+    @HostListener('blur', ['$event'])
     onBlur(event: FocusEvent) {
-        if (!this.dropdown.activateOnFocus) return;
+        if (!this.dropdown.activateOnFocus) {
+            return;
+        }
         if (event.relatedTarget &&
-            !this.dropdown.isInClosableZone(<HTMLElement> event.relatedTarget) &&
+            !this.dropdown.isInClosableZone(<HTMLElement>event.relatedTarget) &&
             event.relatedTarget !== this.elementRef.nativeElement) {
 
             this.dropdown.close();
-            document.removeEventListener("click", this.closeDropdownOnOutsideClick, true);
+            document.removeEventListener('click', this.closeDropdownOnOutsideClick, true);
         }
     }
 
@@ -104,7 +109,7 @@ export class DropdownOpen implements OnDestroy {
     // -------------------------------------------------------------------------
 
     ngOnDestroy() {
-        document.removeEventListener("click", this.closeDropdownOnOutsideClick, true);
+        document.removeEventListener('click', this.closeDropdownOnOutsideClick, true);
     }
 
     // -------------------------------------------------------------------------
@@ -112,11 +117,11 @@ export class DropdownOpen implements OnDestroy {
     // -------------------------------------------------------------------------
 
     private closeIfInClosableZone(event: Event) {
-        if (!this.dropdown.isInClosableZone(<HTMLElement> event.target)
+        if (!this.dropdown.isInClosableZone(<HTMLElement>event.target)
             && event.target !== this.elementRef.nativeElement
             && !this.elementRef.nativeElement.contains(event.target)) {
             this.dropdown.close();
-            document.removeEventListener("click", this.closeDropdownOnOutsideClick, true);
+            document.removeEventListener('click', this.closeDropdownOnOutsideClick, true);
         }
     }
 
