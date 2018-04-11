@@ -1,0 +1,24 @@
+{
+  "name": "ngx-slim-dropdown",
+  "version": "1.0.1",
+  "description": "A pure simple dropdown for ngx ",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kexxxfeng/ngx-dropdown.git"
+  },
+  "keywords": [
+    "dropdown",
+    "ngx",
+    "simple"
+  ],
+  "author": "kexxxfeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kexxxfeng/ngx-dropdown/issues"
+  },
+  "homepage": "https://github.com/kexxxfeng/ngx-dropdown#readme"
+}
