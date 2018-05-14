@@ -4,5 +4,20 @@
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kexxxfeng/ngx-dropdown.git"
+  },
+  "keywords": [
+    "dropdown",
+    "ngx",
+    "simple"
+  ],
+  "author": "kexxxfeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kexxxfeng/ngx-dropdown/issues"
+  },
+  "homepage": "https://github.com/kexxxfeng/ngx-dropdown#readme"
 }
