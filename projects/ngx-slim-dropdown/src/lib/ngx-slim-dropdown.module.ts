@@ -9,20 +9,20 @@ export * from './Dropdown';
 export * from './DropdownOpen';
 
 @NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [
-        DropdownNotClosableZoneDirective,
-        DropdownDirective,
-        DropdownOpenDirective,
-    ],
-    exports: [
-        DropdownNotClosableZoneDirective,
-        DropdownDirective,
-        DropdownOpenDirective,
-    ]
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    DropdownNotClosableZoneDirective,
+    DropdownDirective,
+    DropdownOpenDirective,
+  ],
+  exports: [
+    DropdownNotClosableZoneDirective,
+    DropdownDirective,
+    DropdownOpenDirective,
+  ]
 })
-export class DropdownModule {
+export class NgxSlimDropdownModule {
 
 }

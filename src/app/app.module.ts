@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { DropdownModule } from 'ngx-slim-dropdown';
+import { NgxSlimDropdownModule } from 'ngx-slim-dropdown';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { DropdownModule } from 'ngx-slim-dropdown';
   ],
   imports: [
     BrowserModule,
-    DropdownModule
+    NgxSlimDropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

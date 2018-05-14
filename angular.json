@@ -11,7 +11,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/ngx-dropdown",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -110,6 +110,46 @@
           "options": {
             "tsConfig": [
               "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-slim-dropdown": {
+      "root": "projects/ngx-slim-dropdown",
+      "sourceRoot": "projects/ngx-slim-dropdown/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-slim-dropdown/tsconfig.lib.json",
+            "project": "projects/ngx-slim-dropdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ngx-slim-dropdown/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-slim-dropdown/src/test.ts",
+            "tsConfig": "projects/ngx-slim-dropdown/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-slim-dropdown/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-slim-dropdown/tsconfig.lib.json",
+              "projects/ngx-slim-dropdown/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
