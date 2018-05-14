@@ -1,68 +1,66 @@
-import { Directive, ElementRef, ContentChild, Output, EventEmitter, Input } from '@angular/core';
+import { Directive, Renderer2, ElementRef, ContentChild, Output, EventEmitter, Input } from '@angular/core';
 import { DropdownNotClosableZoneDirective } from './DropdownNotClosableZone';
 
 @Directive({
-    selector: '[appDropdown]'
+  selector: '[appDropdown]'
 })
 export class DropdownDirective {
 
-    // -------------------------------------------------------------------------
-    // Inputs / Outputs
-    // -------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Inputs / Outputs
+  // -------------------------------------------------------------------------
 
-    @Input('dropdownToggle')
-    toggleClick = true;
+  @Input('dropdownToggle')
+  toggleClick = true;
 
-    @Input('dropdownFocusActivate')
-    activateOnFocus = false;
+  @Input('dropdownFocusActivate')
+  activateOnFocus = false;
 
-    @Output()
-    onOpen = new EventEmitter();
+  @Output()
+  onOpen = new EventEmitter();
 
-    @Output()
-    onClose = new EventEmitter();
+  @Output()
+  onClose = new EventEmitter();
 
-    // -------------------------------------------------------------------------
-    // Properties
-    // -------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Properties
+  // -------------------------------------------------------------------------
 
-    @ContentChild(DropdownNotClosableZoneDirective)
-    notClosableZone: DropdownNotClosableZoneDirective;
+  @ContentChild(DropdownNotClosableZoneDirective)
+  notClosableZone: DropdownNotClosableZoneDirective;
 
-    // -------------------------------------------------------------------------
-    // Constructor
-    // -------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Constructor
+  // -------------------------------------------------------------------------
 
-    constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private render: Renderer2) {
+  }
+
+  // -------------------------------------------------------------------------
+  // Public Methods
+  // -------------------------------------------------------------------------
+
+  open() {
+    this.render.addClass(this.elementRef.nativeElement, 'open');
+    this.onOpen.emit(undefined);
+  }
+
+  close() {
+    this.render.removeClass(this.elementRef.nativeElement, 'open');
+    this.onClose.emit(undefined);
+  }
+
+  isOpened() {
+    const element: HTMLElement = this.elementRef.nativeElement;
+    return element.classList.contains('open');
+  }
+
+  isInClosableZone(element: HTMLElement) {
+    if (!this.notClosableZone) {
+      return false;
     }
 
-    // -------------------------------------------------------------------------
-    // Public Methods
-    // -------------------------------------------------------------------------
-
-    open() {
-        const element: HTMLElement = this.elementRef.nativeElement;
-        element.classList.add('open');
-        this.onOpen.emit(undefined);
-    }
-
-    close() {
-        const element: HTMLElement = this.elementRef.nativeElement;
-        element.classList.remove('open');
-        this.onClose.emit(undefined);
-    }
-
-    isOpened() {
-        const element: HTMLElement = this.elementRef.nativeElement;
-        return element.classList.contains('open');
-    }
-
-    isInClosableZone(element: HTMLElement) {
-        if (!this.notClosableZone) {
-            return false;
-        }
-
-        return this.notClosableZone.contains(element);
-    }
+    return this.notClosableZone.contains(element);
+  }
 
 }
