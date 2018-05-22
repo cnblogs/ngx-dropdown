@@ -17,6 +17,8 @@ export class DropdownOpenDirective implements OnDestroy {
 
   private closeDropdownOnOutsideClick: (event: Event) => void;
 
+  private listener: () => void;
+
   // -------------------------------------------------------------------------
   // Constructor
   // -------------------------------------------------------------------------
@@ -58,7 +60,7 @@ export class DropdownOpenDirective implements OnDestroy {
     }
 
     this.dropdown.close();
-    this.listenToDocumentClick();
+    this.removeListenerToDocClick();
   }
 
   @HostListener('click')
@@ -102,7 +104,7 @@ export class DropdownOpenDirective implements OnDestroy {
       event.relatedTarget !== this.elementRef.nativeElement) {
 
       this.dropdown.close();
-      this.listenToDocumentClick();
+      this.removeListenerToDocClick();
     }
   }
 
@@ -111,7 +113,7 @@ export class DropdownOpenDirective implements OnDestroy {
   // -------------------------------------------------------------------------
 
   ngOnDestroy() {
-    this.listenToDocumentClick();
+    this.removeListenerToDocClick();
   }
 
   // -------------------------------------------------------------------------
@@ -123,12 +125,18 @@ export class DropdownOpenDirective implements OnDestroy {
       && event.target !== this.elementRef.nativeElement
       && !this.elementRef.nativeElement.contains(event.target)) {
       this.dropdown.close();
-      this.listenToDocumentClick();
+      this.removeListenerToDocClick();
     }
   }
 
 
   private listenToDocumentClick() {
-    this.render.listen('document', 'click', this.closeDropdownOnOutsideClick);
+    this.listener = this.render.listen('document', 'click', this.closeDropdownOnOutsideClick);
+  }
+
+  private removeListenerToDocClick() {
+    if (this.listener) {
+      this.listener();
+    }
   }
 }
