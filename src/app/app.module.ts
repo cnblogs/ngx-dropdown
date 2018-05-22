@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { NgxSlimDropdownModule } from 'ngx-slim-dropdown';
+import { NgxSlimDropdownModule } from '../../projects/ngx-slim-dropdown/src/lib/ngx-slim-dropdown.module';
 
 
 @NgModule({

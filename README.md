@@ -1,12 +1,10 @@
 # ngx-slim-dropdown
 
 Simple dropdown for your angular5 applications. Does not depend of jquery.
-Simply create proper css classes.
+Simply import css in `style.css`.
 eg:
-```css
-.open .dropdown {
-    display: block;
-}
+```
+@import "~ngx-slim-dropdown/ngx-slim-dropdown.css";
 ```
 Please star a project if you liked it, or create an issue if you have problems with it.
 
