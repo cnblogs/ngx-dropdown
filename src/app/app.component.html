@@ -1,6 +1,6 @@
 <div appDropdown>
   <button appDropdownOpen>dropdown</button>
-  <div class="dropdown">
+  <div class="dropdown-menu">
     <p>item1</p>
     <p>item2</p>
     <p>...</p>
@@ -9,9 +9,26 @@
 
 <div appDropdown appDropdownNotClosableZone="true">
   <button appDropdownOpen>dropdown2</button>
-  <div class="dropdown">
+  <div class="dropdown-menu">
     <p>item1</p>
     <p>item2</p>
     <p>...</p>
+  </div>
+</div>
+
+<div appDropdown>
+  <button appDropdownOpen>dropdown</button>
+  <div class="dropdown-menu">
+    <p>item1</p>
+    <p>item2</p>
+    <p>...</p>
+    <div appDropdown>
+      <button appDropdownOpen appDropdownNotClosableZone="true">dropdown2</button>
+      <div class="dropdown-menu">
+        <p>sub-item1</p>
+        <p>sub-item2</p>
+        <p>sub-...</p>
+      </div>
+    </div>
   </div>
 </div>
