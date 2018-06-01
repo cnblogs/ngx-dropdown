@@ -1,8 +1,8 @@
-.dropdown {
+.dropdown-menu {
     display: none;
     border: 1px solid;
 }
 
-.open .dropdown {
+.open > .dropdown-menu {
     display: block;
 }
