@@ -5,6 +5,9 @@
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
   },
+  "scripts": {
+    "push": "npm publish --registry http://registry.npmjs.org"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:kexxxfeng/ngx-dropdown.git"
