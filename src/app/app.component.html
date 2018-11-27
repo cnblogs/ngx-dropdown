@@ -1,33 +1,33 @@
 <div appDropdown>
   <button appDropdownOpen>dropdown</button>
   <div class="dropdown-menu">
-    <p>item1</p>
-    <p>item2</p>
-    <p>...</p>
+    <p (click)="onClick()">item1</p>
+    <p (click)="onClick()">item2</p>
+    <p (click)="onClick()">...</p>
   </div>
 </div>
 
 <div appDropdown appDropdownNotClosableZone="true">
   <button appDropdownOpen>dropdown2</button>
   <div class="dropdown-menu">
-    <p>item1</p>
-    <p>item2</p>
-    <p>...</p>
+    <p (click)="onClick()">item1</p>
+    <p (click)="onClick()">item2</p>
+    <p (click)="onClick()">...</p>
   </div>
 </div>
 
 <div appDropdown>
   <button appDropdownOpen>dropdown</button>
   <div class="dropdown-menu">
-    <p>item1</p>
-    <p>item2</p>
-    <p>...</p>
+    <p (click)="onClick()">item1</p>
+    <p (click)="onClick()">item2</p>
+    <p (click)="onClick()">...</p>
     <div appDropdown>
       <button appDropdownOpen appDropdownNotClosableZone="true">dropdown2</button>
       <div class="dropdown-menu">
-        <p>sub-item1</p>
-        <p>sub-item2</p>
-        <p>sub-...</p>
+        <p (click)="onClick()">sub-item1</p>
+        <p (click)="onClick()">sub-item2</p>
+        <p (click)="onClick()">sub-...</p>
       </div>
     </div>
   </div>
@@ -36,8 +36,13 @@
 <div appDropdown>
   <h1 appDropdownPress>hahah</h1>
   <div class="dropdown-menu">
-    <p>item1</p>
-    <p>item2</p>
-    <p>...</p>
+    <p (click)="onClick()">item1</p>
+    <p (click)="onClick()">item2</p>
+    <p (click)="onClick()">...</p>
   </div>
+</div>
+
+
+<div>
+  <input>
 </div>

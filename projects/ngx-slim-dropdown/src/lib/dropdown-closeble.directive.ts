@@ -3,7 +3,7 @@ import { DropdownDirective } from './Dropdown';
 
 export class DropdownCloseble {
 
-  private listener: () => void;
+  private listener: (() => void)[] = [];
 
   private closeDropdownOnOutsideClick: (event: Event) => void;
 
@@ -53,12 +53,22 @@ export class DropdownCloseble {
   }
 
   public listenToDocumentClick() {
-    this.listener = this.render.listen('document', 'click', this.closeDropdownOnOutsideClick);
+    if ('ontouchstart' in document.documentElement) {
+      const children = document.children;
+      for (let index = 0; index < children.length; index++) {
+        const element = children[index];
+        this.listener.push(this.render.listen(element, 'mouseover', this.closeDropdownOnOutsideClick));
+      }
+    } else {
+      this.listener.push(this.render.listen('document', 'click', this.closeDropdownOnOutsideClick));
+    }
   }
 
   public removeListenerToDocClick() {
     if (this.listener) {
-      this.listener();
+      this.listener.forEach(i => {
+        i();
+      });
     }
   }
 
