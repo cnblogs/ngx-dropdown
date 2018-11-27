@@ -3,6 +3,7 @@ import { DropdownCloseble } from './dropdown-closeble.directive';
 import { DropdownDirective } from './Dropdown';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: '[appDropdownPress]'
 })
 export class DropdownPressDirective extends DropdownCloseble implements OnDestroy {

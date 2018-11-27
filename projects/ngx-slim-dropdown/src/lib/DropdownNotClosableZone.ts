@@ -1,22 +1,23 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-    selector: '[appDropdownNotClosableZone]'
+  // tslint:disable-next-line:directive-selector
+  selector: '[appDropdownNotClosableZone]'
 })
 export class DropdownNotClosableZoneDirective {
 
-    @Input()
-    dropdownNotClosabledZone: boolean;
+  @Input()
+  dropdownNotClosabledZone: boolean;
 
-    constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef) {
+  }
+
+  contains(element: HTMLElement) {
+    if (this.dropdownNotClosabledZone === false) {
+      return false;
     }
 
-    contains(element: HTMLElement) {
-        if (this.dropdownNotClosabledZone === false) {
-            return false;
-        }
-
-        const thisElement: HTMLElement = this.elementRef.nativeElement;
-        return thisElement.contains(element);
-    }
+    const thisElement: HTMLElement = this.elementRef.nativeElement;
+    return thisElement.contains(element);
+  }
 }

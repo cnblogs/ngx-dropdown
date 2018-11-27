@@ -2,6 +2,7 @@ import { Directive, Renderer2, ElementRef, ContentChild, Output, EventEmitter, I
 import { DropdownNotClosableZoneDirective } from './DropdownNotClosableZone';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: '[appDropdown]'
 })
 export class DropdownDirective {
@@ -10,17 +11,17 @@ export class DropdownDirective {
   // Inputs / Outputs
   // -------------------------------------------------------------------------
 
+  // tslint:disable-next-line:no-input-rename
   @Input('dropdownToggle')
   toggleClick = true;
 
+  // tslint:disable-next-line:no-input-rename
   @Input('dropdownFocusActivate')
   activateOnFocus = false;
 
-  @Output()
-  onOpen = new EventEmitter();
+  @Output() inOpen = new EventEmitter();
 
-  @Output()
-  onClose = new EventEmitter();
+  @Output() inClose = new EventEmitter();
 
   // -------------------------------------------------------------------------
   // Properties
@@ -42,12 +43,12 @@ export class DropdownDirective {
 
   open() {
     this.render.addClass(this.elementRef.nativeElement, 'open');
-    this.onOpen.emit(undefined);
+    this.inOpen.emit(undefined);
   }
 
   close() {
     this.render.removeClass(this.elementRef.nativeElement, 'open');
-    this.onClose.emit(undefined);
+    this.inClose.emit(undefined);
   }
 
   isOpened() {
